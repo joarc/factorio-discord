@@ -4,4 +4,4 @@
 # The server admins and settings files are optional, but recommended
 
 cd /opt/factorio/factorio/
-./bin/x64/factorio --start-server savefile_name --console-log /opt/factorio/factorio/console.log --server-adminlist server-admins.json --server-settings server-settings.json
+./bin/x64/factorio --start-server savefile_name --console-log console.log --server-adminlist server-admins.json --server-settings server-settings.json

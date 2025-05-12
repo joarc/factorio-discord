@@ -27,9 +27,14 @@ CONSOLE_LOG_PATH=/path/to/your/console.log
     - Enable the "Message Content Intent" under Privileged Gateway Intents
 
 4. Get your channel ID:
+
     - Enable Developer Mode in Discord (Settings > Advanced > Developer Mode)
     - Right-click the channel you want to monitor
     - Click "Copy ID"
+
+5. Add the bot to your server
+    - https://discord.com/api/oauth2/authorize?client_id=[CLIENT_ID]&permissions=67584&scope=bot%20applications.commands
+    - Replace the CLIENT_ID with your client id from discord developer portal
 
 ## Running the Bot
 
@@ -49,5 +54,3 @@ Factorio must be ran in a tmux-session. See scripts/ folder for example files.
 -   Forwards messages from the channel to the console
 -   Monitors a specified console.log file
 -   Forwards console.log messages to the Discord channel
-
-https://discord.com/api/oauth2/authorize?client_id=[CLIENT_ID]&permissions=67584&scope=bot%20applications.commands
