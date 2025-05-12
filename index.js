@@ -72,7 +72,7 @@ function sendFactorioMessage(message) {
     // Execute tmux command to send message to factorio
     let tmux_session = process.env.TMUX_SESSION;
 
-    exec(`tmux send -t ${tmux_session} -l "${message}" && tmux send -t ${tmux_session} Enter`, (error, stdout, stderr) => {
+    exec(`tmux send -t ${tmux_session}:0.0 -l "${message}" && tmux send -t ${tmux_session}:0.0 Enter`, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error executing tmux command: ${error}`);
             return;
