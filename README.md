@@ -39,9 +39,15 @@ Start the bot with:
 npm start
 ```
 
+## Running factorio
+
+Factorio must be ran in a tmux-session. See scripts/ folder for example files.
+
 ## Features
 
 -   Monitors a specific Discord channel for messages
 -   Forwards messages from the channel to the console
 -   Monitors a specified console.log file
 -   Forwards console.log messages to the Discord channel
+
+https://discord.com/api/oauth2/authorize?client_id=[CLIENT_ID]&permissions=67584&scope=bot%20applications.commands
