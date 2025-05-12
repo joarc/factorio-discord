@@ -31,7 +31,7 @@ function discordMessageListener() {
         // Echo the message to the console
         console.log(`[Discord] ${message.author.username}: ${message.content}`);
 
-        sendFactorioMessage(message.content);
+        sendFactorioMessage(message);
     });
 }
 
@@ -49,6 +49,10 @@ function factorioConsoleLogListener() {
         try {
             const channel = await client.channels.fetch(process.env.CHANNEL_ID);
             if (channel) {
+                if (line.includes("<server>")) {
+                    return;
+                }
+
                 if (line.includes("[CHAT]") || line.includes("[JOIN]") || line.includes("[LEAVE]")) {
                     await channel.send(`${line}`);
                 }
@@ -63,7 +67,7 @@ function factorioConsoleLogListener() {
     });
 }
 
-function sendFactorioMessage(message) {
+function sendFactorioMessage(discordMessage) {
     if (!process.env.TMUX_SESSION) {
         console.error("TMUX_SESSION is not set, not sending message to factorio");
         return;
@@ -71,6 +75,8 @@ function sendFactorioMessage(message) {
 
     // Execute tmux command to send message to factorio
     let tmux_session = process.env.TMUX_SESSION;
+
+    let message = `[D] ${discordMessage.author.username}: ${discordMessage.content}`;
 
     exec(`tmux send -t ${tmux_session}:0.0 -l "${message}" && tmux send -t ${tmux_session}:0.0 Enter`, (error, stdout, stderr) => {
         if (error) {
