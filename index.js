@@ -54,7 +54,20 @@ function factorioConsoleLogListener() {
                 }
 
                 if (line.includes("[CHAT]") || line.includes("[JOIN]") || line.includes("[LEAVE]")) {
-                    await channel.send(`${line}`);
+                    // Clean up the message by removing datetime and tags
+                    let cleanMessage = line;
+                    if (line.includes("[CHAT]")) {
+                        // Remove datetime and [CHAT] tag
+                        cleanMessage = line.replace(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} \[CHAT\] /, "");
+                    } else if (line.includes("[JOIN]")) {
+                        // Remove datetime and [JOIN] tag
+                        cleanMessage = line.replace(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} \[JOIN\] /, "");
+                    } else if (line.includes("[LEAVE]")) {
+                        // Remove datetime and [LEAVE] tag
+                        cleanMessage = line.replace(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} \[LEAVE\] /, "");
+                    }
+
+                    await channel.send(cleanMessage);
                 }
             }
         } catch (error) {
