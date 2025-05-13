@@ -54,6 +54,11 @@ function factorioConsoleLogListener() {
                 }
 
                 if (line.includes("[CHAT]") || line.includes("[JOIN]") || line.includes("[LEAVE]")) {
+                    if (line.includes("[gps=")) {
+                        // Don't send GPS-messages
+                        return;
+                    }
+
                     // Clean up the message by removing datetime and tags
                     let cleanMessage = line;
                     if (line.includes("[CHAT]")) {
